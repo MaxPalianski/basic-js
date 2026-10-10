@@ -13,9 +13,15 @@ const { NotImplementedError } = require('../lib');
  *
  */
 class DepthCalculator {
-  calculateDepth(/* arr */) {
-    // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+  calculateDepth(arr) {
+    let maxDepth = 0;
+    for (let item of arr) {
+      if (Array.isArray(item)) {
+        const depth = this.calculateDepth(item);
+        maxDepth = Math.max(maxDepth, depth);
+      }
+    }
+    return 1 + maxDepth;
   }
 }
 
